@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lab5</string>
+    <string name="app_name">BasicLab</string>
     <string name="action_settings">Settings</string>
     <string name="about">About</string>
     <string name="help">Help</string>
