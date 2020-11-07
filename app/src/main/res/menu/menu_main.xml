@@ -13,6 +13,7 @@
         android:id="@+id/about"
         />
 
-    <item android:id="@+id/help"
-    android:title="@string/about" />
+    <item
+        android:id="@+id/help"
+        android:title="@string/help" />
 </menu>
