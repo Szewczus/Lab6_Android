@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.View;
 
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
 
     }
 
@@ -60,18 +60,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.about) {
-            Snackbar.make(findViewById(R.id.id_content_main), "About", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.id_content_main), "Action 1", Snackbar.LENGTH_LONG).show();
             return true;
         }
 
         if (id == R.id.help) {
-            Snackbar.make(findViewById(R.id.id_content_main), "Help", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.id_content_main), "Action 2", Snackbar.LENGTH_LONG).show();
             return true;
         }
 
+        if (id==R.id.fragment1)
+        {
+            NavHostFragment.findNavController(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).navigate(R.id.action1);
+        }
 
+        if (id==R.id.fragment2)
+        {
+            NavHostFragment.findNavController(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).navigate(R.id.action2);
+        }
 
-
+        if (id==R.id.fragment3)
+        {
+            NavHostFragment.findNavController(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).navigate(R.id.action3);
+        }
 
         return super.onOptionsItemSelected(item);
     }

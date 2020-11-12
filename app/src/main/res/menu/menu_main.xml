@@ -16,4 +16,16 @@
     <item
         android:id="@+id/help"
         android:title="@string/help" />
+
+    <item
+        android:id="@+id/fragment1"
+        android:title="@string/fragment1" />
+
+    <item
+        android:id="@+id/fragment2"
+        android:title="@string/fragment2" />
+
+    <item
+        android:id="@+id/fragment3"
+        android:title="@string/fragment3" />
 </menu>
