@@ -1,5 +1,6 @@
 package com.example.lab5;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,6 +8,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.View;
@@ -14,6 +17,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private View myView;
@@ -29,6 +35,21 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                Random rnd = new Random();
+                int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(100), rnd.nextInt(256));
+
+                FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+                List<Fragment> fragments = fragmentManager.getFragments();
+                if(fragments != null){
+                    for(Fragment fragment : fragments){
+                        if(fragment != null && fragment.isVisible())
+                            fragment.getView().setBackgroundColor(color);
+                    }
+                }
+
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
