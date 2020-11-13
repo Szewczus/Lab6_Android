@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.View;
@@ -23,6 +24,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private View myView;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +44,44 @@ public class MainActivity extends AppCompatActivity {
                 Random rnd = new Random();
                 int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(100), rnd.nextInt(256));
 
-                FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
-                List<Fragment> fragments = fragmentManager.getFragments();
-                if(fragments != null){
+                /*FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+                List<Fragment> fragments = fragmentManager.getFragments();*/
+                /*if(fragments != null){
                     for(Fragment fragment : fragments){
                         if(fragment != null && fragment.isVisible())
                             fragment.getView().setBackgroundColor(color);
                     }
+                }*/
+                FragmentManager f=getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment).getChildFragmentManager();
+                List<Fragment> frag=f.getFragments();
+                String s="";
+                for (Fragment f1 : frag)
+                {
+                    if(f1.isVisible())
+                    {
+                        f1.getView().setBackgroundColor(color);
+                        s=f1.getChildFragmentManager().toString();
+                        if(f1.getChildFragmentManager().toString().contains("SecondFragment"))
+                        {
+                            s="SecondFragment";
+                        }
+                        if(f1.getChildFragmentManager().toString().contains("FirstFragment"))
+                        {
+                            s="FirstFragment";
+                        }
+                        if(f1.getChildFragmentManager().toString().contains("ThirdFragment"))
+                        {
+                            s="ThirdFragment";
+
+                        }
+                    }
                 }
 
+                //fragmentManager.getPrimaryNavigationFragment().getView().setBackgroundColor();
 
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+
+                Snackbar.make(view, s, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
